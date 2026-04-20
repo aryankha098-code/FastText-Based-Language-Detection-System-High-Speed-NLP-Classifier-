@@ -1,94 +1,108 @@
-🌍 Language Detection using FastText
+# 🌍 Language Detection using FastText
 
-This project builds a language detection system using FastText supervised learning. It preprocesses text data, balances the dataset, and trains a model capable of predicting the language of user-input text.
+This project is a **Language Detection system** built using **FastText supervised learning**. It classifies input text into its corresponding language using a trained machine learning model.
 
-📌 Features
-🔹 Text preprocessing (cleaning, normalization)
-🔹 Handling class imbalance using oversampling
-🔹 FastText supervised classification
-🔹 Model evaluation (Precision & Recall)
-🔹 Real-time user input prediction
-🛠️ Tech Stack
-Python
-Pandas
-NumPy
-Regex
-Scikit-learn
-Imbalanced-learn
-FastText
-📂 Project Workflow
-1. Data Loading
-Load dataset from new_data.csv
-Remove missing values
-2. Data Preprocessing
-Remove special characters
-Normalize whitespace
-Convert text to lowercase
-3. Label Formatting
+---
 
-FastText requires labels in a specific format:
+## 🚀 Project Overview
 
-__label__<language>
+The goal of this project is to detect the language of a given text input using natural language processing techniques and FastText classification. The pipeline includes data preprocessing, handling imbalanced classes, training the model, and evaluating its performance.
 
-4. Train-Test Split
-80% training data
-20% testing data
-5. Handling Imbalanced Data
-Applied RandomOverSampler to balance class distribution
-6. Training FastText Model
-model = fasttext.train_supervised(
-    input="language.train",
-    epoch=25,
-    lr=1.0,
-    wordNgrams=2,
-    dim=100
-)
+---
 
-7. Model Evaluation
-result = model.test("language.test")
+## 📌 Features
+
+- Text cleaning and preprocessing
+- Label formatting for FastText (`__label__`)
+- Handling imbalanced dataset using RandomOverSampler
+- FastText supervised model training
+- Model evaluation using Precision and Recall
+- Real-time language prediction from user input
+
+---
+
+## 🛠️ Tech Stack
+
+- Python  
+- Pandas  
+- NumPy  
+- Regex  
+- Scikit-learn  
+- Imbalanced-learn  
+- FastText  
+
+---
+
+## 📂 Workflow
+
+### 1. Data Loading
+- Load dataset from `new_data.csv`
+- Remove missing values
+
+### 2. Preprocessing
+- Remove punctuation and special characters
+- Normalize extra spaces
+- Convert text to lowercase
+
+### 3. Label Formatting
+FastText requires labels in the following format:
+
+### 4. Train-Test Split
+- 80% training data
+- 20% testing data
+
+### 5. Handling Imbalanced Data
+- Applied **RandomOverSampler** to balance classes
+
+### 6. Training Model
+
+### 7. Evaluation
+Model is evaluated using:
+- Precision
+- Recall
+
+---
+
+## 📊 Results
+
+The model performance is measured using FastText evaluation:
 
 
-Metrics:
+---
 
-Precision
-Recall
-8. Prediction
+## ▶️ How to Run
 
-Users can input custom text:
+### Install dependencies
 
-user = input("Enter your text: ")
-model.predict(user_text)
+### Run the project
 
-📊 Dataset Format
+---
 
-Your dataset (new_data.csv) should contain:
+## 📁 Dataset Format
 
-Column	Description
-Language	Input text
-Label	Language category label
-▶️ How to Run
-1. Install Dependencies
-pip install pandas numpy scikit-learn imbalanced-learn fasttext regex
+Your dataset should look like:
 
-2. Run the Script
-python main.py
+| Language | Label |
+|----------|-------|
+| text     | English / French / etc. |
 
-📈 Sample Output
-Precision: 0.92
-Recall: 0.91
+---
 
-Enter your text: Bonjour tout le monde
-Prediction: __label__French
+## 🚀 Future Improvements
 
-🚀 Future Improvements
-Add deep learning models (LSTM / Transformers)
-Deploy as REST API (Flask / FastAPI)
-Integrate into web applications
-Improve dataset size and diversity
-🤝 Contributing
+- Deploy as REST API using Flask or FastAPI
+- Integrate into web or mobile app
+- Improve dataset size and quality
+- Try transformer-based models for better accuracy
 
-Feel free to fork this repo and submit pull requests to improve the project.
+---
 
-📜 License
+## 🤝 Contributing
 
-This project is open-source and available under the MIT License.
+Pull requests are welcome. Feel free to improve the model or pipeline.
+
+---
+
+## 📜 License
+
+This project is open-source and free to use.
