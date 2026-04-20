@@ -1,148 +1,94 @@
-# 🌍 FastText Language Detection System
+🌍 Language Detection using FastText
 
-A high-performance language detection system built using FastText, capable of identifying the language of input text with low latency and scalable performance.
+This project builds a language detection system using FastText supervised learning. It preprocesses text data, balances the dataset, and trains a model capable of predicting the language of user-input text.
 
----
+📌 Features
+🔹 Text preprocessing (cleaning, normalization)
+🔹 Handling class imbalance using oversampling
+🔹 FastText supervised classification
+🔹 Model evaluation (Precision & Recall)
+🔹 Real-time user input prediction
+🛠️ Tech Stack
+Python
+Pandas
+NumPy
+Regex
+Scikit-learn
+Imbalanced-learn
+FastText
+📂 Project Workflow
+1. Data Loading
+Load dataset from new_data.csv
+Remove missing values
+2. Data Preprocessing
+Remove special characters
+Normalize whitespace
+Convert text to lowercase
+3. Label Formatting
 
-## 🚀 Overview
+FastText requires labels in a specific format:
 
-This project implements a supervised machine learning model for automatic language detection. It uses Facebook's FastText library to classify text into predefined language categories efficiently.
+__label__<language>
 
-The system is designed to be:
+4. Train-Test Split
+80% training data
+20% testing data
+5. Handling Imbalanced Data
+Applied RandomOverSampler to balance class distribution
+6. Training FastText Model
+model = fasttext.train_supervised(
+    input="language.train",
+    epoch=25,
+    lr=1.0,
+    wordNgrams=2,
+    dim=100
+)
 
-* ⚡ Fast (optimized for low latency)
-* 📊 Scalable (handles large datasets)
-* 🧠 Accurate (with proper dataset and tuning)
+7. Model Evaluation
+result = model.test("language.test")
 
----
 
-## 🛠️ Tech Stack
+Metrics:
 
-* Python
-* FastText
-* Pandas
-* NumPy
-* Scikit-learn
-* Regex (text preprocessing)
+Precision
+Recall
+8. Prediction
 
----
+Users can input custom text:
 
-## 📂 Dataset
+user = input("Enter your text: ")
+model.predict(user_text)
 
-The dataset consists of labeled text samples where each entry contains:
+📊 Dataset Format
 
-* Language label
-* Corresponding text
+Your dataset (new_data.csv) should contain:
 
-Example format:
+Column	Description
+Language	Input text
+Label	Language category label
+▶️ How to Run
+1. Install Dependencies
+pip install pandas numpy scikit-learn imbalanced-learn fasttext regex
 
-```
-__label__en This is a sample sentence
-__label__fr Ceci est une phrase exemple
-```
+2. Run the Script
+python main.py
 
----
+📈 Sample Output
+Precision: 0.92
+Recall: 0.91
 
-## ⚙️ Features
+Enter your text: Bonjour tout le monde
+Prediction: __label__French
 
-* Text preprocessing and cleaning
-* Supervised FastText model training
-* Train-test split evaluation
-* Language prediction for user input
-* Lightweight and fast inference
+🚀 Future Improvements
+Add deep learning models (LSTM / Transformers)
+Deploy as REST API (Flask / FastAPI)
+Integrate into web applications
+Improve dataset size and diversity
+🤝 Contributing
 
----
+Feel free to fork this repo and submit pull requests to improve the project.
 
-## 🧹 Preprocessing
-
-* Lowercasing text
-* Removing punctuation
-* Removing extra spaces
-
----
-
-## 🏋️ Model Training
-
-The model is trained using FastText's supervised learning:
-
-```
-fasttext.train_supervised(input="language.train")
-```
-
----
-
-## 📊 Evaluation
-
-The model is evaluated using a test dataset:
-
-```
-model.test("language.test")
-```
-
-Returns:
-
-* Precision
-* Recall
-* Number of examples
-
----
-
-## 🔮 Usage
-
-Run the script and input text:
-
-```
-Enter your text: Hello, how are you?
-```
-
-Output:
-
-```
-('__label__en', probability)
-```
-
----
-
-## 📈 Future Improvements
-
-* Improve dataset quality and size
-* Hyperparameter tuning (lr, epoch, ngrams)
-* Add support for short-text detection
-* Handle multilingual/mixed-language inputs
-* Build REST API using FastAPI
-* Deploy as a web service
-
----
-
-## ⚠️ Limitations
-
-* Performance depends heavily on dataset quality
-* Struggles with very short text (e.g., "hi", "ok")
-* No real-time API or deployment yet
-
----
-
-## 💡 Use Cases
-
-* Chat applications
-* Content filtering systems
-* Multilingual platforms
-* NLP preprocessing pipelines
-
----
-
-## 🧑‍💻 Author
-
-Aryan Khalique
-
----
-
-## ⭐ Contributing
-
-Contributions are welcome! Feel free to fork the repo and submit a pull request.
-
----
-
-## 📜 License
+📜 License
 
 This project is open-source and available under the MIT License.
